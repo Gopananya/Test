@@ -7,21 +7,44 @@
                     <div class="card-body">
                         <form>
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="customFile" @change='fileChange()'>
-                              <label class="custom-file-label" for="customFile">Choose file</label>
-                          </div>
+                                <input type="file" class="custom-file-input" id="customFile" @change='chooseFile'>
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div v-if="showTable">
+                                <EditableTableComponent :keys='keys' :list="list" />
+                            </div>
+                        
                       </form>
                   </div>
 
               </div>
           </div>
+
       </div>
   </div>
 </template>
 
 <script>
+import fileReader from '../helpers/fileReader.js';
+import EditableTableComponent from './EditableTableComponent.vue';
+
 export default {
-    name: 'Home'
+    name: 'Home',
+    data() {
+        return {
+            list: [],
+            keys: [],
+            showTable: false
+        }
+    },
+    methods: {
+        chooseFile: async function(event){
+            this.list = await fileReader.read(event);
+            this.keys = Object.keys(this.list[0]);
+            this.showTable = true;
+        }
+    },
+    components: {EditableTableComponent}
 }
 </script>
 
