@@ -41,8 +41,6 @@ class FileController extends Controller
             $csv = rtrim($csv, ",")."\n";
         }
         $filename = './upload/'.time().'file.csv';
-
-        
         $handle = fopen($filename, 'w+');
         fputs($handle, $csv);
         fclose($handle);
