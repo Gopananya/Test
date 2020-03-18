@@ -2,7 +2,7 @@
     <div>
         <br>
         <button type='button' class="btn btn-success" @click="add">Add</button><br><br>
-        <table class="table table-bordered">
+        <table class="editable-table table table-bordered">
           <thead>
             <tr>
               <th v-for="key in keys">{{key}}</th>
@@ -65,20 +65,5 @@
 </script>
 
 <style>
-    table td {
-      position: relative;
-    }
-
-    table td input {
-      position: absolute;
-      display: block;
-      top:0;
-      left:0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-      border: none;
-      padding: 10px;
-      box-sizing: border-box;
-    }
+    
 </style>
