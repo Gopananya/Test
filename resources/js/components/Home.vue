@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">File</div>
                     <div class="card-body">
-                        <form>
+                        <form method="post" action="api/file/save">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" @change='chooseFile'>
                                 <label class="custom-file-label" for="customFile">Choose file</label>

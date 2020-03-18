@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root><element>
+<country>Ukraine111</country>
+<capital>Kyiv111</capital>
+</element>
+<element>
+<country>Germany222</country>
+<capital>Berlin222</capital>
+</element>
+<element>
+<country>USA333</country>
+<capital>Washington333</capital>
+</element>
+<element>
+<country>44444</country>
+<capital>44444</capital>
+</element>
+<element>
+<country>55555</country>
+<capital>55555</capital>
+</element>
+</root>

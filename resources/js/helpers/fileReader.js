@@ -21,6 +21,7 @@ function readCSV(file) {
 				keys.forEach((key, i) => {
 					obj[keys[i].toLowerCase()] = line.split(",")[i]
 				})
+				console.log(obj);
 				return obj;
 			})
 			resolve(output);

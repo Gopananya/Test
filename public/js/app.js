@@ -46240,7 +46240,7 @@ var render = function() {
                     expression: "item.country"
                   }
                 ],
-                attrs: { type: "text" },
+                attrs: { type: "text", name: "list[" + index + "][country]" },
                 domProps: { value: item.country },
                 on: {
                   input: function($event) {
@@ -46263,7 +46263,7 @@ var render = function() {
                     expression: "item.capital"
                   }
                 ],
-                attrs: { type: "text" },
+                attrs: { type: "text", name: "list[" + index + "][capital]" },
                 domProps: { value: item.capital },
                 on: {
                   input: function($event) {
@@ -46309,6 +46309,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control form-control-sm",
+            attrs: { name: "type" },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -46334,21 +46335,24 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-2" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { type: "button" },
-            on: { click: _vm.submit }
-          },
-          [_vm._v("Submit")]
-        )
-      ])
+      _vm._m(0)
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Submit")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -46377,7 +46381,7 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [_vm._v("File")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("form", [
+            _c("form", { attrs: { method: "post", action: "api/file/save" } }, [
               _c("div", { staticClass: "custom-file" }, [
                 _c("input", {
                   staticClass: "custom-file-input",
@@ -67023,6 +67027,7 @@ function readCSV(file) {
         keys.forEach(function (key, i) {
           obj[keys[i].toLowerCase()] = line.split(",")[i];
         });
+        console.log(obj);
         return obj;
       });
       resolve(output);
@@ -67109,9 +67114,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /***/ (function(module, exports) {
 
 module.exports.saveChanges = function (data) {
-  console.log(data);
-  axios.post('api/file/save', data).then(function (resopnse) {})["catch"](function (err) {
-    return rej(err);
+  axios.post('api/file/save', data).then(function (response) {
+    var fileURL = window.URL.createObjectURL(new Blob(response.data));
+    var fileLink = document.createElement('a');
+    fileLink.href = fileURL;
+    fileLink.setAttribute('download', 'file.json');
+    document.body.appendChild(fileLink);
+    fileLink.click();
+  })["catch"](function (err) {
+    return console.log(err);
   });
 };
 

@@ -12,8 +12,8 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in list" :key="index">
-              <td><input type="text" v-model='item.country'></td>
-              <td><input type="text" v-model='item.capital'></td>
+                <td><input type="text" v-model='item.country' :name="'list['+index+'][country]'"></td>
+                <td><input type="text" v-model='item.capital' :name="'list['+index+'][capital]'"></td>
               <td></td>
               <td><button class="btn btn-danger" type="button" @click="remove" :data-id="index">Remove</button></td>
             </tr>
@@ -21,12 +21,12 @@
         </table>
         <div class="row">
             <div class="col-md-2">
-                <select class="form-control form-control-sm" v-model="selected">
+                <select class="form-control form-control-sm" v-model="selected" name="type">
                     <option v-for="type in types"  :value="type">{{type}}</option>
                 </select>
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-success" @click="submit">Submit</button>
+                <button type="submit" class="btn btn-success" >Submit</button>
             </div>
         </div>
     </div>
